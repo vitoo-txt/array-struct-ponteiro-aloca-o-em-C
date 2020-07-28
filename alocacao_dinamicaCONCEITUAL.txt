@@ -1,0 +1,43 @@
+//FUNÇÃO TEM RETORNO
+//PROCEDIMENTO NÃO TEM RETORNO
+
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 10
+void carregaVetor(int *v){
+    for (int i = 0; i < TAM; i++){
+        printf("Digite um valor para vet[%i]:", i);
+        scanf("%d", &v[i]);
+    }
+}
+
+void mostraVetor(int *v){
+    for (int i = 0; i < TAM; i++){
+        printf("%i, ", v[i]);
+    }
+}
+
+int* criaVetorDinamico(){
+    int *vet;
+    vet = (int*) malloc(TAM * sizeof(int));
+    
+    return vet;
+}
+
+int main(){
+    int *vet;
+    vet = criaVetorDinamico();
+    //PROCEDIMENTO TRATAMENTO DE ERRO
+    if (vet == NULL){
+        printf("Impossível alocar memória.");
+        return 0;
+    }
+    
+    carregaVetor(vet);
+    
+    mostraVetor(vet);
+    
+    free(vet);
+
+    return 0;
+}

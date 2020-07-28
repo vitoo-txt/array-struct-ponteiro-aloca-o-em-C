@@ -1,0 +1,363 @@
+#include <stdio.h>
+#include <string.h>
+#define LIVROS 1
+
+typedef struct Livro{
+		int cod;
+		char doado[10];
+		char nomeObra[50];
+		char nomeAutor[50];
+		char editora[50];
+		int numPag;
+}Livro;
+
+void carregaLivro(){
+    
+    Livro ciencias[3][500];
+
+	for (int i = 0; i < 3; ++i){
+		if(i==0){
+			printf("EXATAS\n");
+		}else 
+		
+		if(i==1){
+			printf("HUMANAS\n");
+		}else
+		
+		{
+			printf("BIOMÉDICAS\n");
+		}
+		
+		for (int j = 0; j < LIVROS; ++j){
+		    
+		    printf("Código do Livro:");
+	    	scanf("%d", &ciencias[i][j].cod);
+
+	    	printf("Doado(sim/nao):");
+	    	scanf("%s", ciencias[i][j].doado);
+
+	    	printf("Nome da Obra:");
+	    	scanf("%s", ciencias[i][j].nomeObra);
+
+	    	printf("Nome do Autor:");
+	    	scanf("%s", ciencias[i][j].nomeAutor);
+
+	    	printf("Editora:");
+	    	scanf("%s", ciencias[i][j].editora);
+
+	    	printf("Número de Páginas:");
+	    	scanf("%d", &ciencias[i][j].numPag); 
+	    	
+	    	printf("Livro adicionado!\n");
+		}
+    }
+}    
+void consultaLivroId(int tipo, int codigo, char nome[50], char doado[3]){
+    
+    Livro ciencias[3][500];
+    
+    for(int i = 0; i < LIVROS; i++){
+        if(strcmp(ciencias[tipo][i].nomeObra, nome) == 0 || ciencias[tipo][i].cod == codigo){
+            
+            printf("Código do Livro:");
+	    	printf("%d\n", ciencias[tipo][i].cod);
+
+	    	printf("Doado:");
+	    	printf("%s\n", ciencias[tipo][i].doado);
+
+	    	printf("Nome da Obra:");
+	    	printf("%s\n", ciencias[tipo][i].nomeObra);
+
+	    	printf("Nome do Autor:");
+	    	printf("%s\n", ciencias[tipo][i].nomeAutor);
+
+	    	printf("Editora:");
+	    	printf("%s\n", ciencias[tipo][i].editora);
+
+	    	printf("Nº. de Páginas:");
+	    	printf("%d\n", ciencias[tipo][i].numPag); 	
+
+		}else{
+		    printf("Este livro não foi registrado.\n");
+		}
+	}
+}
+
+void consultaLivroNome(int tipo, char nome[50], char doado[3]){
+    
+    Livro ciencias[3][500];
+    
+    for(int i = 0; i < LIVROS; i++){
+        if(strcmp(ciencias[tipo][i].nomeObra, nome) == 0){
+            
+            printf("Código do Livro:");
+	    	printf("%d\n", ciencias[tipo][i].cod);
+
+	    	printf("Doado:");
+	    	printf("%s\n", ciencias[tipo][i].doado);
+
+	    	printf("Nome da Obra:");
+	    	printf("%s\n", ciencias[tipo][i].nomeObra);
+
+	    	printf("Nome do Autor:");
+	    	printf("%s\n", ciencias[tipo][i].nomeAutor);
+
+	    	printf("Editora:");
+	    	printf("%s\n", ciencias[tipo][i].editora);
+
+	    	printf("Nº. de Páginas:");
+	    	printf("%d\n", ciencias[tipo][i].numPag); 	
+
+		}else{
+		    printf("Este livro não foi registrado.\n");
+		}
+	}
+}
+
+void alteraRegistro(int tipo, int codigo, char nome[50], char doado[3]){
+    
+    Livro ciencias[3][500];
+    if( codigo =! -1 ){
+        for(int i = 0; i < LIVROS; i++){
+            if(strcmp(ciencias[tipo][i].nomeObra, nome) == 0 || ciencias[tipo][i].cod == codigo){
+                
+                printf("Insira o Novo Código do Livro:");
+    	    	scanf("%d", &ciencias[tipo][i].cod);
+    
+    	    	printf("Insira o Novo Doado(sim/nao):");
+    	    	scanf("%s", ciencias[tipo][i].doado);
+    
+    	    	printf("Insira o Novo Nome da Obra:");
+    	    	scanf("%s", ciencias[tipo][i].nomeObra);
+    
+    	    	printf("Insira o Novo Nome do Autor:");
+    	    	scanf("%s", ciencias[tipo][i].nomeAutor);
+    
+    	    	printf("Insira o Novo Editora:");
+    	    	scanf("%s", ciencias[tipo][i].editora);
+    
+    	    	printf("Insira o Novo Número de Páginas:");
+    	    	scanf("%d", &ciencias[tipo][i].numPag); 	
+    
+    		}else{
+    		    printf("Este livro não foi registrado.\n");
+    		}
+    	}
+    }
+}
+
+void excluiRegistro(int tipo, int codigo, char nome[50], char doado[3]){
+    
+    Livro ciencias[3][500];
+    if( codigo =! -1 ){
+        for(int i = 0; i < LIVROS; i++){
+            if(strcmp(ciencias[tipo][i].nomeObra, nome) == 0 || ciencias[tipo][i].cod == codigo){
+                ciencias[tipo][i].cod=0;
+                
+		        sprintf(ciencias[tipo][i].doado,"%s","0");
+		    
+		        sprintf(ciencias[tipo][i].nomeObra,"%s","0");
+		    
+		        sprintf(ciencias[tipo][i].nomeAutor,"%s","0");
+		    
+		        sprintf(ciencias[tipo][i].editora,"%s","0");
+		    
+		        ciencias[tipo][i].numPag=0;
+		    }else{
+		        printf("Este livro não foi registrado.\n");
+		    }
+		
+	    }
+    }
+}
+
+void mostraLivroDoado(){
+
+    Livro ciencias[3][500];
+    
+	for (int i = 0; i < 3; ++i){
+	
+		if(i==0){
+			printf("EXATAS\n");
+		}else 
+		
+		if(i==1){
+			printf("HUMANAS\n");
+		}else
+		
+		{
+			printf("BIOMÉDICAS\n");
+		}
+		
+		for (int j = 0; j < LIVROS; ++j){
+		    
+		    if(strcmp(ciencias[i][j].doado, "sim") == 0){
+		        printf("Código do Livro:\n");
+	    	    printf("%d", ciencias[i][j].cod);
+
+	    	    printf("Doado(sim/nao):\n");
+	    	    printf("%s", ciencias[i][j].doado);
+
+	    	    printf("Nome da Obra:\n");
+	    	    printf("%s", ciencias[i][j].nomeObra);
+
+	    	    printf("Nome do Autor:\n");
+	    	    printf("%s", ciencias[i][j].nomeAutor);
+
+	        	printf("Editora:\n");
+	        	printf("%s", ciencias[i][j].editora);
+
+	        	printf("Número de Páginas:\n");
+	        	printf("%d", ciencias[i][j].numPag);
+		        
+		    }
+		   
+		}
+    }
+    
+}
+
+void mostraLivroComprado(){
+    Livro ciencias[3][500];
+    
+	for (int i = 0; i < 3; ++i){
+	
+		if(i==0){
+			printf("EXATAS\n");
+		}else 
+		
+		if(i==1){
+			printf("HUMANAS\n");
+		}else
+		
+		{
+			printf("BIOMÉDICAS\n");
+		}
+		
+		for (int j = 0; j < LIVROS; ++j){
+		    
+		    
+		    if(strcmp(ciencias[i][j].doado, "nao") == 0 && ciencias[i][j].numPag >= 100 && ciencias[i][j].numPag <= 300){
+		        printf("Código do Livro:\n");
+	    	    printf("%d", ciencias[i][j].cod);
+
+	    	    printf("Doado(sim/nao):\n");
+	    	    printf("%s", ciencias[i][j].doado);
+
+	    	    printf("Nome da Obra:\n");
+	    	    printf("%s", ciencias[i][j].nomeObra);
+
+	    	    printf("Nome do Autor:\n");
+	    	    printf("%s", ciencias[i][j].nomeAutor);
+
+	        	printf("Editora:\n");
+	        	printf("%s", ciencias[i][j].editora);
+
+	        	printf("Número de Páginas:\n");
+	        	printf("%d", ciencias[i][j].numPag);
+		        
+		    }
+		   
+		}
+    }
+    
+}
+
+int main(){
+    int cod, tipo;
+    char nome[50];
+	carregaLivro();	
+	
+	printf("----------------------------------------------------------------\n");
+	
+	do{
+	    printf("Consulte um livro informando o código e a área do conhecimento:\n");
+	    printf("Categoria do Livro: 0-Exatas, 1-Humanas, 2-Biomédicas:");
+	    scanf("%d", &tipo); 
+	    
+	    printf("Código do Livro:");
+	    scanf("%d", &cod); 
+
+	    consultaLivroId(tipo,cod,"","");
+
+	}while(cod != -1);
+	
+	printf("----------------------------------------------------------------\n");
+	
+	printf("Consulte um livro informando o nome e a área do conhecimento:\n");
+	do{
+	    printf("Categoria do Livro: 0-Exatas, 1-Humanas, 2-Biomédicas:");
+	    scanf("%d", &tipo); 
+	    
+	    printf("Nome do Livro:");
+	    scanf(" %s", nome); 
+	    
+	    consultaLivroNome(tipo,nome,"");
+	    
+	    printf("Deseja continuar? Se sim digite 1, senão digite -1:");
+	    scanf("%d", &cod); 
+
+	    
+
+	}while(cod != -1);
+	
+	printf("----------------------------------------------------------------\n");
+
+	do{
+	    printf("Altere o registro informando o código de a área do livro:\n");
+	    printf("Categoria do Livro: 0-Exatas, 1-Humanas, 2-Biomédicas:");
+	    scanf("%d", &tipo); 
+	    
+	    printf("Código do Livro:");
+	    scanf("%d", &cod); 
+
+	    alteraRegistro(tipo,cod,"","");
+
+	}while(cod != -1 || tipo !=-1);
+	
+	printf("----------------------------------------------------------------\n");
+
+	printf("----------------------------------------------------------------\n");
+	printf("Exclua o registro informando o código de a área do livro:\n");
+	do{
+	    printf("Categoria do Livro: 0-Exatas, 1-Humanas, 2-Biomédicas:");
+	    scanf("%d", &tipo); 
+	    
+	    printf("Código do Livro:");
+	    scanf("%d", &cod); 
+
+	    excluiRegistro(tipo,cod,"","");
+
+	}while(cod != -1 || tipo !=-1);
+	
+	printf("----------------------------------------------------------------\n");
+	
+	printf("----------------------------------------------------------------\n");
+	
+	do{
+	    printf("Consulte um livro informando o código e a área do conhecimento:\n");
+	    printf("Categoria do Livro: 0-Exatas, 1-Humanas, 2-Biomédicas:");
+	    scanf("%d", &tipo); 
+	    
+	    printf("Código do Livro:");
+	    scanf("%d", &cod); 
+
+	    consultaLivroId(tipo,cod,"","");
+
+	}while(cod != -1);
+	
+	printf("----------------------------------------------------------------\n");
+	
+	printf("----------------------------------------------------------------\n");
+	
+	printf("Apenas os livros que foram doados:\n");
+	mostraLivroDoado();
+	
+	printf("----------------------------------------------------------------\n");
+	 
+	printf("Apenas os livros que foram comprados e que tem entre 100 e 300 páginas:\n");
+	mostraLivroComprado();
+	
+
+    return 0;
+}

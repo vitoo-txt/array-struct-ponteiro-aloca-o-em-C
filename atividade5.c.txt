@@ -1,0 +1,27 @@
+#include <stdio.h>
+#define TAM 5
+
+int main() {
+
+	int altura[TAM] = {0}, idade[TAM] = {0},idade_a, altura_a, cont, cont2;
+	
+	//inserir valores 
+	for(cont = 0;cont<TAM;cont++){
+		printf("Digite sua idade:");
+    	scanf("%i", &idade_a);
+    		idade[cont]=idade_a;
+    		
+    	printf("Digite sua altura em centímetros:");
+    	scanf("%i", &altura_a);
+    		altura[cont]=altura_a;
+
+	}
+    cont2 = 1;
+	//mostra os dados de maneira inversa
+	for(cont = 0;cont<TAM;cont++){
+	        printf("\n Os dados da pessoa %i são: %i cm e %i anos", cont2, altura[cont], idade[cont]);
+	        cont2++;
+	}
+	
+		return 0;
+}

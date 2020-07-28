@@ -1,0 +1,164 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct{
+	char prop[100];
+	char combustivel[50];
+	char modelo[50];
+	char cor[50];
+	int chassi;
+	int ano;
+	char placa[10];
+} Veiculo;
+
+Veiculo* criarVetor(){
+	Veiculo *veiculop;
+	veiculop = (Veiculo*) malloc(5000 * sizeof(Veiculo));
+	return veiculop;
+}
+
+void carregaVeiculo(Veiculo *veiculop, int i){
+	printf("_______________________________________\n");
+	printf("Proprietário:");
+   	scanf("%s", veiculop[i].prop);
+
+   	printf("Escolha uma dentre as seguintes opções de combustível: álcool, diesel ou gasolina.");
+   	scanf("%s", veiculop[i].combustivel);
+
+   	printf("Modelo:");
+   	scanf("%s", veiculop[i].modelo);
+
+   	printf("Cor:");
+   	scanf("%s", veiculop[i].cor);
+
+   	printf("Número do Chassi:");
+   	scanf("%d", &veiculop[i].chassi);
+
+   	printf("Ano:");
+   	scanf("%d", &veiculop[i].ano);  
+
+   	printf("Placa:");
+   	scanf("%s", veiculop[i].placa);
+   	
+ 	printf("Veículo adicionado com sucesso.\n");
+}
+
+void buscaProprietario(Veiculo *veiculop){
+
+	for(int i = 0; i < sizeof(veiculop); ++i){
+		if(strcmp(veiculop[i].combustivel,"diesel") == 0 && veiculop[i].ano >= 1980){
+			printf("_______________________________________\n");
+			printf("Proprietário:");
+   			printf("%s\n", veiculop[i].prop);
+	   		printf("_______________________________________\n");
+	   	}
+   }
+}
+
+void buscaPlaca(Veiculo *veiculop){
+
+	for(int i = 0; i < sizeof(veiculop); ++i){
+		char pChar = veiculop[i].placa[0];
+		char uChar = veiculop[i].placa[6];
+		if( pChar == 'A' && uChar == '0' || uChar == '2' || uChar == '4' || uChar == '7'){
+			printf("_______________________________________\n");
+			printf("Proprietário:");
+   			printf("%s\n", veiculop[i].prop);
+   			printf("Placa:");
+   			printf("%s\n", veiculop[i].placa);
+	   		printf("_______________________________________\n");
+	   	}
+   }
+}
+
+void buscaModelo(Veiculo *veiculop){
+
+	for(int i = 0; i < sizeof(veiculop); ++i){
+	    int somaPlaca = (int) veiculop[i].placa[3]+ (int) veiculop[i].placa[4]+ (int) veiculop[i].placa[5]+ (int) veiculop[i].placa[6];
+	    
+		char sChar = veiculop[i].placa[1];
+		
+		if( sChar == 'A' || sChar == 'E' || sChar == 'I' || sChar == 'O' || sChar == 'U' && somaPlaca % 2 == 0){
+			printf("_______________________________________\n");
+   			printf("Modelo:");
+   			printf("%s\n", veiculop[i].modelo);
+
+   			printf("Cor:");
+   			printf("%s\n", veiculop[i].cor);
+	   		printf("_______________________________________\n");
+	   	}
+   }
+}
+
+void alteraRegistro(Veiculo *veiculop, int chassi){
+	int i = 0, c = 0;
+	for (int i2 = 0; i2 < sizeof(veiculop); ++i2){
+		if(veiculop[i2].chassi == chassi){
+			i = i2;	
+			c = 1;
+		}
+	}
+	if(c == 1){
+		printf("_______________________________________\n");
+		
+		printf("Alterando registro\n");
+		
+		printf("Proprietário:");
+   		scanf("%s", veiculop[i].prop);
+
+   		printf("Escolha uma dentre as seguintes opções de combustível: álcool, diesel ou gasolina.");
+   		scanf("%s", veiculop[i].combustivel);
+
+   		printf("Modelo:");
+   		scanf("%s", veiculop[i].modelo);
+
+   		printf("Cor:");
+   		scanf("%s", veiculop[i].cor);
+
+   		printf("No. Chassi:");
+   		scanf("%d", &veiculop[i].chassi);
+
+   		printf("Ano:");
+   		scanf("%d", &veiculop[i].ano);  
+
+   		printf("Placa:");
+   		scanf("%s", veiculop[i].placa);
+   		
+ 		printf("Veículo alterado com sucesso.\n");
+	}
+}
+
+int main(){
+	Veiculo *veiculo_p;
+	veiculo_p = criarVetor();
+	if(veiculo_p == NULL){
+		printf("Erro ao alocar memoria\n");
+		return 0;
+	}
+
+	int i=0,cont =0;
+	do{//Carrega;
+		printf("Digite 1 para cadastrar veículo ou digite -1 para sair\n");
+		scanf("%d", &i);
+		if(i != -1){
+			carregaVeiculo(veiculo_p,cont);
+			cont++;
+		}
+	}while(i != -1);
+	
+	buscaProprietario(veiculo_p);
+
+	buscaPlaca(veiculo_p);
+
+	buscaModelo(veiculo_p);
+
+	int numChassi;
+
+	printf("Chassi:");
+   	scanf("%d", &numChassi);
+	alteraRegistro(veiculo_p,numChassi);
+
+	free(veiculo_p);
+	return 0;
+}

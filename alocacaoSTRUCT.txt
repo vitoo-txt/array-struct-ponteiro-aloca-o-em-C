@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 2
+
+
+typedef struct{
+    char nome[50];
+    char cpf[11];
+    int idade;
+    float salario;
+}Pessoa;
+
+void populaPessoa(Pessoa *pessoas){
+    
+    for(int i=0; i<TAM; i++){
+        printf("\n--------------- PESSOA %d ----------------", i);
+        printf("Informe seu nome:");
+        scanf("%s", pessoas[i].nome);
+        printf("Informe seu cpf:");
+        scanf("%s", pessoas[i].cpf);
+        printf("Informe sua idade:");
+        scanf("%d", &pessoas[i].idade);
+        printf("Informe seu salário:");
+        scanf("%f", &pessoas[i].salario);
+    }
+}
+
+void consultaPessoa(Pessoa *pessoas){
+    
+    for(int i=0; i<TAM; i++){
+        printf("\n--------------- PESSOA %d ----------------", i);
+        printf("\nSeu nome é: %s.", pessoas[i].nome);
+        printf("\nSeu cpf é: %s.", pessoas[i].cpf);
+        printf("\nSua idade é %d anos.", pessoas[i].idade);
+        printf("\nSua salário é %f R$.", pessoas[i].salario);
+    }
+}
+
+Pessoa* criaVetorPessoa(int tam){
+    Pessoa *pessoas;
+    pessoas = (Pessoa*) malloc(tam * sizeof(Pessoa));
+    
+    return pessoas;
+    
+}
+int main(){
+    Pessoa *pessoas;
+    pessoas = criaVetorPessoa(TAM);
+    
+    if(pessoas == NULL){
+        printf("Impossível alocar memória.");
+        return 0;
+    }
+    
+    populaPessoa(pessoas);
+    consultaPessoa(pessoas);
+    
+    free(pessoas);
+    return 0;
+}

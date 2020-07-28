@@ -1,0 +1,37 @@
+#include <stdio.h>
+#define TAM 7
+int main() {
+
+	int tempo[TAM][TAM],cont,cont2,valor;
+    //c = cidade
+	char c1,c2, cidades[TAM]={'A','B','C','D','E','F','G'};
+
+	for(cont = 0;cont<7;cont++){
+		for(cont2 = 0;cont2<7;cont2++){
+			printf("Digite o tempo da cidade %c até a %c:",cidades[cont],cidades[cont2]);
+    		scanf(" %d", &valor);
+    		tempo[cidades[cont]][cidades[cont2]]=valor;
+		}
+	}
+	do{
+
+		printf("Informe a primeira cidade:");
+    	scanf(" %c", &c1);
+    	printf("Informe a segunda cidade:");
+   		scanf(" %c", &c2);
+
+    for(cont = 0;cont<7;cont++){
+		for(cont2 = 0;cont2<7;cont2++){
+			if(c1 == cidades[cont] & c2 == cidades[cont2]){
+
+				printf("Tempo: %d\n", tempo[cidades[cont]][cidades[cont2]]);
+
+			}
+		}
+	}
+
+	}while(c1 != c2);
+    
+	return 0;
+	
+}

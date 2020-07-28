@@ -1,0 +1,51 @@
+#include <stdio.h>
+#define QUESTOES 10
+#define ALUNOS 10
+
+int main() {
+    char resposta[ALUNOS][QUESTOES];
+    char gabarito[QUESTOES];
+	char resultado[QUESTOES];
+	char input[1];
+	int aluno, q, pontuacao = 0;
+	
+
+	//inserir valores 
+	for(aluno = 0; aluno < 10 ;aluno++){
+	    for(q = 0; q < 10 ; q++){
+	        printf("Informe a alternativa escolhida na questão %i:", q);
+	        scanf("%c", &input[1]);
+	        resposta[aluno][q] = input[1];
+	    }
+	}
+	
+	//inserir valores 
+	for(q = 0; q < 10; q++){
+	   printf("\n Informe o gabarito, questão %i: ", q);
+	   scanf("%c", &input[1]);
+	   gabarito[q] = input[1];
+
+	    
+	}
+	
+    //comparar respostas
+    for(aluno = 0; aluno < 10;aluno++){
+	    for(q = 0; q < 10 ; q++){
+	        if(resposta[aluno][q] == gabarito[q]){
+	            resultado[q] = gabarito[q];
+	            pontuacao++;
+	        }
+	    }
+	}
+
+	//mostra resultado
+	for(aluno = 0; aluno < 10;aluno++){
+    	for(q = 0;q<10;q++){
+    	   printf("\n %c", resultado[q]);
+    	}
+	    printf("\n A pontuação do aluno %i foi: %i", aluno, pontuacao);
+	}
+	
+	
+		return 0;
+}

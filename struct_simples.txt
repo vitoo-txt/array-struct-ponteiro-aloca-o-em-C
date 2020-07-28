@@ -1,0 +1,64 @@
+
+#include <stdio.h>
+#define TAM 2
+
+typedef struct Pessoa{
+    char nome[100];
+    char cpf [11];
+    int idade;
+}Pessoa;
+
+void populaPessoa(){
+    Pessoa vet[TAM];
+    
+    for(int i=0; i<TAM; i++){
+        printf("Informe seu nome:");
+        scanf("%s", vet[i].nome);
+        printf("Informe seu cpf:");
+        scanf("%s", vet[i].cpf);
+        printf("Informe sua idade:");
+        scanf("%d", &vet[i].idade);
+    }
+}
+
+void consultaPessoa(){
+    Pessoa vet[TAM];
+    
+    for(int i=0; i<TAM; i++){
+        printf("\n--------------- PESSOA %d ----------------", i);
+        printf("\nSeu nome é: %s.", vet[i].nome);
+        printf("\nSeu cpf é: %s.", vet[i].cpf);
+        printf("\nSua idade é %d anos.", vet[i].idade);
+    }
+}
+
+void consultaCpf(char cpfP[11]){
+    Pessoa vet[TAM];
+    
+    for(int i=0; i<TAM; i++){
+        if(strcmp(cpfP, vet[i].cpf)==0){
+            printf("\nSeu nome é: %s.", vet[i].nome);
+            printf("\nSeu cpf é: %s.", vet[i].cpf);
+            printf("\nSua idade é %d anos.", vet[i].idade);
+        }
+    }  
+    
+    
+}
+
+int main(){
+    char cpff[11];
+    
+    populaPessoa();
+    
+    /*printf("PESSOAS CADASTRADAS");
+    
+    consultaPessoa();*/
+    
+    printf("\nInforme o CPF da pessoa que deseja obter os dados:");
+    scanf("%s", cpff);
+    consultaCpf(cpff);
+    
+    return 0;
+
+}

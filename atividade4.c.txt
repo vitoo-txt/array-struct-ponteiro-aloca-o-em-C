@@ -1,0 +1,37 @@
+#include <stdio.h>
+#define TAM 12
+
+int main() {
+
+	int N[TAM] = {0}, X[TAM]= {0}, Y[TAM]= {0},valor, cont, cont2=0, cont3=0;
+	
+	//inserir valores
+	for(cont = 0;cont<12;cont++){
+		printf("Digite um valor:");
+    		scanf("%d", &valor);
+    		N[cont]=valor;
+
+	}
+    //copiar valores
+	for(cont = 0;cont<12;cont++){
+		if(N[cont] % 2 == 0 & N[cont] % 3 == 0){
+			X[cont2]=N[cont];
+			cont2++;//aumenta uma posição para não copiar no mesmo elemento
+		}else if(N[cont] % 2 != 0 & N[cont] % 5 == 0){
+			Y[cont3]=N[cont];
+			cont3++;
+		}
+	}
+	
+	//mostra o X
+	for(cont = 0;cont<12;cont++){
+	    printf("// X = %i, ", X[cont]);
+	}
+	
+	//mostra o Y
+	for(cont = 0;cont<12;cont++){
+	    printf("// Y = %i, ", Y[cont]);
+	}
+	
+		return 0;
+}

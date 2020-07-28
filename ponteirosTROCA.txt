@@ -1,0 +1,34 @@
+/******************************************************************************
+* puxa o valor
+& puxa o endereço
+*******************************************************************************/
+
+#include <stdio.h>
+
+void escrevaBeD(int *bb, int *dd){
+    printf("B:%d\n", *bb);
+    printf("D:%d\n", *dd);
+}
+
+void trocaValor(int *bb, int *dd){
+    int temp = *bb;
+    *bb = *dd;
+    *dd = temp;
+}
+
+int main()
+{
+    int a=1, b=2, c=3, d=4;
+    int *p_a, *p_c;
+    
+    p_a = &a;
+    p_c = &c;
+    
+    printf("%d\n", *p_a + *p_c);
+    
+    escrevaBeD(&b, &d);
+    trocaValor(&b, &d);
+    escrevaBeD(&b, &d);
+
+    return 0;
+}
